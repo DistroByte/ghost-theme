@@ -1,0 +1,20 @@
+routes:
+
+collections:
+  /photography/:
+    permalink: /photography/{slug}/
+    filter: tag:photography
+    template: photography
+
+  /blog/:
+    permalink: /blog/{slug}/
+    filter: tag:blog
+    template: blog
+
+  /:
+    permalink: /{slug}/
+    template: home
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/

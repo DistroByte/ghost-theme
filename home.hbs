@@ -1,50 +1,48 @@
 {{!< default}} <main class="site-main">
 
-    <div class="homepage-sections">
-        <section class="homepage-section photography">
-            <header class="feed-header gh-canvas">
-                {{#if @custom.feed_title}}
-                <div class="feed-header-wrapper">
-                    <h2 class="feed-header-title">Latest Photography</h2>
-                </div>
-                {{/if}}
-            </header>
-            {{#get "posts" filter="tag:photography" limit="3" as |photographyPosts|}}
-            <div class="post-feed expanded gh-feed gh-canvas">
-                {{#foreach photographyPosts}}
-                <article class="post-card">
-                    {{> "loop"}}
-                </article>
-                {{/foreach}}
+    <section class="homepage-section photography">
+        <header class="feed-header gh-canvas">
+            {{#if @custom.feed_title}}
+            <div class="feed-header-wrapper">
+                <h2 class="feed-header-title">Latest Photography</h2>
             </div>
+            {{/if}}
+        </header>
+        {{#get "posts" filter="tag:photography" limit="5" as |photographyPosts|}}
+        <div class="post-feed expanded gh-feed gh-canvas">
+            {{#foreach photographyPosts}}
+            <article class="post-card">
+                {{> "loop"}}
+            </article>
+            {{/foreach}}
+        </div>
 
-            <a href="/photography">{{> view-more}}</a>
+        <a href="/photography">{{> view-more}}</a>
 
-            {{/get}}
-        </section>
+        {{/get}}
+    </section>
 
-        <section class="homepage-section blog">
-            <header class="feed-header gh-canvas">
-                {{#if @custom.feed_title}}
-                <div class="feed-header-wrapper">
-                    <h2 class="feed-header-title">Latest Blog</h2>
-                </div>
-                {{/if}}
-            </header>
-            {{#get "posts" filter="tag:blog" limit="5" as |blogPosts|}}
-            <div class="post-feed gh-feed gh-canvas">
-                {{#foreach blogPosts}}
-                <article class="post-card">
-                    {{> "loop"}}
-                </article>
-                {{/foreach}}
+    <section class="homepage-section blog">
+        <header class="feed-header gh-canvas">
+            {{#if @custom.feed_title}}
+            <div class="feed-header-wrapper">
+                <h2 class="feed-header-title">Latest Blog</h2>
             </div>
+            {{/if}}
+        </header>
+        {{#get "posts" filter="tag:blog" limit="3" as |blogPosts|}}
+        <div class="post-feed gh-feed gh-canvas">
+            {{#foreach blogPosts}}
+            <article class="post-card">
+                {{> "loop"}}
+            </article>
+            {{/foreach}}
+        </div>
 
-            <a href="/blog">{{> view-more}}</a>
+        <a href="/blog">{{> view-more}}</a>
 
-            {{/get}}
-        </section>
-    </div>
+        {{/get}}
+    </section>
 
     </main>
 

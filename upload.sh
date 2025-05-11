@@ -41,6 +41,8 @@ TOKEN="${header_payload}.${signature}"
 
 FILENAME="$(date -I)-${THEME}"
 
+mkdir -p dist
+
 zip -r "dist/$FILENAME.zip" . -x '*git*' '*node_modules*' '*bower_components*'
 
 # Upload theme and extract name and version

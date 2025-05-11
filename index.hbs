@@ -1,4 +1,6 @@
-{{!< default}} <main class="site-main">
+{{!< default}} 
+
+<main class="site-main">
 
     <header class="feed-header gh-canvas">
         {{#if @custom.feed_title}}
@@ -20,3 +22,4 @@
 
     {{#contentFor "body_class"}}{{#if @site.cover_image}} with-full-cover is-head-transparent{{/if}}{{#if @member}}
     logged-in{{/if}}{{/contentFor}}
+

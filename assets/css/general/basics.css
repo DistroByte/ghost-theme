@@ -1,17 +1,17 @@
 :root {
     --brand-color: var(--ghost-accent-color, #ff572f);
-    --primary-text-color: #333;
-    --secondary-text-color: #999;
-    --white-color: #fff;
-    --lighter-gray-color: #f6f6f6;
-    --light-gray-color: #e6e6e6;
-    --mid-gray-color: #ccc;
-    --dark-gray-color: #444;
-    --darker-gray-color: #1a1a1a;
-    --black-color: #000;
-    --green-color: #28a745;
-    --orange-color: #ffc107;
-    --red-color: #dc3545;
+    --primary-text-color: #100F0F; /* tx */
+    --secondary-text-color: #6F6E69; /* tx-2 */
+    --white-color: #FFFCF0; /* bg */
+    --lighter-gray-color: #F2F0E5; /* bg-2 */
+    --light-gray-color: #E6E4D9; /* ui */
+    --mid-gray-color: #CECDC3; /* ui-3 */
+    --dark-gray-color: #403E3C; /* ui-3 (dark theme) */
+    --darker-gray-color: #1C1B1A; /* bg-2 (dark theme) */
+    --black-color: #100F0F; /* tx */
+    --green-color: #66800B; 
+    --orange-color: #BC5215;
+    --red-color: #AF3029;
     --facebook-color: #3b5998;
     --twitter-color: #1da1f2;
     --rss-color: #f26522;

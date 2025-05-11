@@ -21,7 +21,7 @@ body:not(.with-full-cover) .cover {
     left: 0;
     z-index: 10;
     content: "";
-    background-color: #000;
+    background-color: #100F0F;
     opacity: 0.3;
     transition: opacity 1.5s ease;
 }
@@ -64,7 +64,7 @@ body:not(.with-full-cover) .cover {
 }
 
 .with-full-cover .cover-description {
-    color: #fff;
+    color: #FFFCF0;
 }
 
 .cover-cta {
@@ -87,7 +87,7 @@ body:not(.with-full-cover) .cover {
 }
 
 .with-full-cover .cover-form input {
-    background-color: #fff;
+    background-color: #FFFCF0;
     border-color: transparent;
 }
 
@@ -113,7 +113,7 @@ body:not(.with-full-cover) .cover {
 .cover-arrow .icon {
     width: 28px;
     height: 28px;
-    color: #fff;
+    color: #FFFCF0;
 }
 
 @media (max-width: 767px) {

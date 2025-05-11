@@ -19,3 +19,8 @@
         margin: 0;
     }
 }
+
+.gh-head {
+    height: 100px;
+    background-color: var(--white-color);
+}

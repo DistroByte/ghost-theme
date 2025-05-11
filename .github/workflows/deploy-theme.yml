@@ -1,16 +1,34 @@
 name: Deploy Theme
 
 on:
-    push:
-        branches:
-            - master
+  push:
+    branches:
+      - master
 jobs:
-    deploy:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-            - name: Deploy Ghost Theme
-              uses: TryGhost/action-deploy-theme@v1
-              with:
-                  api-url: ${{ secrets.GHOST_ADMIN_API_URL }}
-                  api-key: ${{ secrets.GHOST_ADMIN_API_KEY }}
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Run npm install
+        run: npm install
+
+      - name: Run rpm run zip
+        run: npm run zip
+
+      - uses: actions/upload-artifact@v4
+        id: artifact-upload-step
+        with:
+          name: theme
+          path: dist/*.zip
+
+      # notify discord
+      - name: Notify Discord
+        run: |
+          curl -H "Content-Type: application/json" -d \
+            '{"content": "## New ghost theme created\n\n[Download](${{ steps.artifact-upload-step.outputs.artifact-url }})"}' \
+            ${{ secrets.DISCORD_WEBHOOK }}

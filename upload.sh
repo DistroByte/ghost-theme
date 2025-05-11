@@ -39,20 +39,14 @@ signature=$(printf '%s' "${header_payload}" | openssl dgst -binary -sha256 -mac 
 # Concat payload and signature into a valid JWT token
 TOKEN="${header_payload}.${signature}"
 
-FILENAME="$(date -I)-${THEME}"
-
-mkdir -p dist
-
-zip -r "dist/$FILENAME.zip" . -x '*git*' '*node_modules*' '*bower_components*'
-
 # Upload theme and extract name and version
 curl -s -H "Authorization: Ghost $TOKEN" \
 -H "Content-Type: multipart/form-data" \
 -H "Accept-Version: $API_VERSION" \
--F "file=@./dist/$FILENAME.zip" \
+-F "file=@./dist/$THEME.zip" \
 $SITE_URL/ghost/api/admin/themes/upload/ | jq '.'
 
 # Activate theme
 curl -s -H "Authorization: Ghost $TOKEN" \
 -H "Accept-Version: $API_VERSION" \
--X PUT "$SITE_URL/ghost/api/admin/themes/$FILENAME/activate/" | jq -r '.themes[] | .name, .package.version'
+-X PUT "$SITE_URL/ghost/api/admin/themes/$THEME/activate/" | jq -r '.themes[] | .name, .package.version'

@@ -10,6 +10,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Build theme
+        run: |
+          npm run zip
+
       - name: Upload to ghost
         env:
           KEY: ${{ secrets.GHOST_ADMIN_API_KEY }}

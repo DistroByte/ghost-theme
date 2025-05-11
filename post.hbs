@@ -3,6 +3,8 @@
 <main class="site-main">
 
     {{#post}}
+        <meta property="og:image" content="{{feature_image}}" />
+        <meta property="twitter:image" content="{{feature_image}}" />
         {{> "content" width="wide"}}
     {{/post}}
 

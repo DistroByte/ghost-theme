@@ -10,25 +10,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
-      - name: Run npm install
-        run: npm install
-
-      - name: Run rpm run zip
-        run: npm run zip
-
-      - uses: actions/upload-artifact@v4
-        id: artifact-upload-step
-        with:
-          name: theme
-          path: dist/*.zip
+      - name: Upload to ghost
+        env:
+          KEY: ${{ secrets.GHOST_ADMIN_API_KEY }}
+          SITE_URL: ${{ secrets.GHOST_ADMIN_API_URL }}
+        run: |
+          ./upload.sh
 
       # notify discord
       - name: Notify Discord
         run: |
           curl -H "Content-Type: application/json" -d \
-            '{"content": "## New ghost theme created\n\n[Download](${{ steps.artifact-upload-step.outputs.artifact-url }})"}' \
+            '{"content": "## New ghost theme uploaded\n\n**Version**: '"$(cat package.json | jq -r '.version')"'\n\n[Download](${{ steps.artifact-upload-step.outputs.artifact-url }})\n\n[View site](https://photo.james-hackett.ie)"}' \
             ${{ secrets.DISCORD_WEBHOOK }}

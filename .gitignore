@@ -1,5 +1,4 @@
 node_modules/
 dist/
-assets/built/
 package-lock.json
 .env

@@ -3,12 +3,6 @@
 <main class="site-main">
 
     {{#post}}
-        {{#contentFor "imageMeta"}}
-            {{#if feature_image}}
-                <meta property="og:image" content="{{feature_image}}" />
-                <meta name="twitter:image" content="{{feature_image}}" />
-            {{/if}}
-        {{/contentFor}}
         {{> "content" width="wide"}}
     {{/post}}
 

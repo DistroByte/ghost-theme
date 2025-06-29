@@ -128,17 +128,16 @@
         "autoprefixer": "10.4.21",
         "beeper": "2.1.0",
         "cssnano": "7.0.7",
-        "gscan": "4.48.0",
-        "gulp": "5.0.0",
+        "gscan": "4.48.1",
+        "gulp": "5.0.1",
         "gulp-concat": "2.6.1",
         "gulp-livereload": "4.0.2",
         "gulp-postcss": "10.0.0",
         "gulp-uglify": "3.0.2",
         "gulp-zip": "5.1.0",
         "ordered-read-streams": "2.0.0",
-        "postcss": "8.5.3",
+        "postcss": "8.5.4",
         "postcss-easy-import": "4.0.0",
         "pump": "3.0.2"
-    },
-    "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+    }
 }

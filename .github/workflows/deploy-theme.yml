@@ -10,11 +10,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Deploy Ghost Theme
-        uses: TryGhost/action-deploy-theme@v1
+      - uses: actions/setup-node@v4
         with:
-          api-url: ${{ secrets.GHOST_ADMIN_API_URL }}
-          api-key: ${{ secrets.GHOST_ADMIN_API_KEY }}
+          node-version: 23
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Build theme
+        run: |
+          npm run zip
+
+      - name: Upload to ghost
+        env:
+          KEY: ${{ secrets.GHOST_ADMIN_API_KEY }}
+          SITE_URL: ${{ secrets.GHOST_ADMIN_API_URL }}
+        run: |
+          ./upload.sh
 
       # notify discord
       - name: Notify Discord

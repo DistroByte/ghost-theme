@@ -5,14 +5,31 @@ source .env
 set -e # exit on error
 
 THEME="edition"
-API_VERSION="v3.0"
+API_VERSION="v5.0"
 
-echo "Deploying $THEME"
+if [[ -z "$KEY" || -z "$SITE_URL" ]]; then
+    echo "Error: KEY and SITE_URL environment variables must be set."
+    exit 1
+fi
+
+# Clean KEY of null bytes and whitespace
+CLEAN_KEY=$(echo -n "$KEY" | tr -d '\000' | tr -d '\r\n' | xargs)
 
 # Split the key into ID and SECRET
 TMPIFS=$IFS
-IFS=':' read ID SECRET <<< "$KEY"
+IFS=':' read ID SECRET <<< "$CLEAN_KEY"
 IFS=$TMPIFS
+
+if [[ -z "$ID" || -z "$SECRET" ]]; then
+    echo "Error: KEY must be in the format <id>:<secret>"
+    exit 1
+fi
+
+# Check if SECRET is 64 hex chars
+if ! [[ $SECRET =~ ^[0-9a-fA-F]{64}$ ]]; then
+    echo "Error: SECRET must be a 64-character hex string."
+    exit 1
+fi
 
 # Prepare header and payload
 NOW=$(date +'%s')
@@ -23,7 +40,6 @@ PAYLOAD="{\"iat\":$NOW,\"exp\":$FIVE_MINS,\"aud\": \"/admin/\"}"
 # Helper function for performing base64 URL encoding
 base64_url_encode() {
     declare input=${1:-$(</dev/stdin)}
-    # Use `tr` to URL encode the output from base64.
     printf '%s' "${input}" | basenc --base64url | tr -d '=' | tr '/+' '_-' | tr -d '\n'
 }
 
@@ -39,14 +55,24 @@ signature=$(printf '%s' "${header_payload}" | openssl dgst -binary -sha256 -mac 
 # Concat payload and signature into a valid JWT token
 TOKEN="${header_payload}.${signature}"
 
-# Upload theme and extract name and version
-curl -s -H "Authorization: Ghost $TOKEN" \
+echo "Deploying $THEME"
+
+curl --write-out 'HTTP %{http_code}\n' -s -o /dev/null -H "Authorization: Ghost $TOKEN" \
 -H "Content-Type: multipart/form-data" \
 -H "Accept-Version: $API_VERSION" \
 -F "file=@./dist/$THEME.zip" \
-$SITE_URL/ghost/api/admin/themes/upload/ | jq '.'
+$SITE_URL/ghost/api/admin/themes/upload/
 
-# Activate theme
+echo "Theme uploaded successfully."
+
+echo "Activating theme..."
 curl -s -H "Authorization: Ghost $TOKEN" \
 -H "Accept-Version: $API_VERSION" \
 -X PUT "$SITE_URL/ghost/api/admin/themes/$THEME/activate/" | jq -r '.themes[] | .name, .package.version'
+
+if [[ $? -ne 0 ]]; then
+    echo "Error activating theme."
+    exit 1
+fi
+
+echo "Theme activated successfully."

@@ -111,6 +111,16 @@
                 "type": "boolean",
                 "default": true,
                 "group": "post"
+            },
+            "full_resolution_note": {
+                "type": "text",
+                "default": "If you would like any of these photos at full resolution, please reach out to me at",
+                "group": "post"
+            },
+            "full_resolution_email": {
+                "type": "text",
+                "default": "james@distrobyte.io",
+                "group": "post"
             }
         }
     },

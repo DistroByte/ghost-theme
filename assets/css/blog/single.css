@@ -75,6 +75,14 @@
     letter-spacing: -0.02rem;
 }
 
+.full-resolution-note {
+    margin-top: 4.5rem;
+    padding-top: 2.4rem;
+    border-top: 1px solid var(--light-gray-color);
+    font-size: 1.5rem;
+    color: var(--secondary-text-color);
+}
+
 .single-footer {
     display: flex;
     align-items: center;

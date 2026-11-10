@@ -3,24 +3,27 @@ name: Deploy Theme
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
-      - uses: actions/setup-node@v4
+      # Mirrors test.yml: upstream Edition builds with pnpm on Node 26
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
-          node-version: 23
+          node-version: 26
 
       - name: Install dependencies
         run: |
-          npm install
+          pnpm install --no-frozen-lockfile
 
       - name: Build theme
         run: |
-          npm run zip
+          pnpm zip
 
       - name: Upload to ghost
         env:

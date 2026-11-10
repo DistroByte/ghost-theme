@@ -1,0 +1,22 @@
+# Edge has no home.hbs, so / is a channel of photography posts. Upload in Ghost Admin → Settings → Labs → Routes.
+routes:
+  /:
+    controller: channel
+    filter: tag:photography
+    template: index
+
+collections:
+  /photography/:
+    permalink: /photography/{slug}/
+    filter: tag:photography
+
+  /blog/:
+    permalink: /blog/{slug}/
+    filter: tag:blog
+
+  /posts/:
+    permalink: /{slug}/
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/

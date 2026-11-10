@@ -56,6 +56,33 @@
     margin: 0 auto;
 }
 
+/* Header reading order: photo, title, date, excerpt, tags, then Share. The header is a grid,
+   so this reorders without touching Edge's template, which puts Share before the excerpt. */
+.gh-article-header .gh-article-image {
+    order: 1;
+    margin-bottom: 40px;
+}
+
+.gh-article-header .gh-article-title {
+    order: 2;
+}
+
+.gh-article-header .post-date {
+    order: 3;
+}
+
+.gh-article-header .gh-article-excerpt {
+    order: 4;
+}
+
+.gh-article-header .post-tags {
+    order: 5;
+}
+
+.gh-article-header .gh-meta-share {
+    order: 6;
+}
+
 /* The header Share button sits under the tags, aligned with the title */
 .gh-article-header .gh-meta-share {
     justify-content: flex-start;
@@ -239,12 +266,13 @@
     transform: scale(1.04);
 }
 
+/* Name above count rather than side by side: long names in wide fonts collided with the count */
 .collection-card-text {
     position: absolute;
     inset: auto 0 0 0;
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+    flex-direction: column;
+    gap: 2px;
     padding: 28px 12px 10px;
     color: #fff;
     background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));

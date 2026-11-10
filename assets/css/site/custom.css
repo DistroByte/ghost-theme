@@ -56,7 +56,7 @@
     margin: 0 auto;
 }
 
-/* Header reading order: photo, title, date, excerpt, tags, then Share. The header is a grid,
+/* Header reading order: photo, title, date with Share, excerpt, tags. The header is a grid,
    so this reorders without touching Edge's template, which puts Share before the excerpt. */
 .gh-article-header .gh-article-image {
     order: 1;
@@ -67,15 +67,14 @@
     order: 2;
 }
 
-.gh-article-header .post-date {
+.gh-article-header .post-date-row {
     order: 3;
 }
 
-/* Edge sets the excerpt in the same light grey as the date; darker and a touch heavier so
-   it reads as the post's lead-in */
+/* Edge sets the excerpt in the same light grey as the date; darker so it reads as the
+   post's lead-in */
 .gh-article-header .gh-article-excerpt {
     order: 4;
-    font-weight: 500;
     color: var(--color-darker-gray);
 }
 
@@ -83,20 +82,21 @@
     order: 5;
 }
 
+/* post-meta.hbs puts Share on the date row, so Edge's own header copy is redundant */
 .gh-article-header .gh-meta-share {
-    order: 6;
+    display: none;
 }
 
-/* The header Share button sits under the tags, aligned with the title */
-.gh-article-header .gh-meta-share {
-    justify-content: flex-start;
-    margin-top: 20px;
-}
-
-/* Publish date and grouped tags under the post title */
-.post-date {
-    display: block;
+/* Publish date (with Share) and grouped tags under the post title */
+.post-date-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
     margin-top: 12px;
+}
+
+.post-date {
     font-size: 1.5rem;
     color: var(--color-secondary-text);
 }

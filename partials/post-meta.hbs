@@ -1,5 +1,13 @@
-{{!-- Publish date, then the post's tags grouped by the Camera and Subject lists in the theme settings; anything else is a Place --}}
-<time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date published_at format="D MMMM YYYY"}}</time>
+{{!--
+    Publish date with the Share button on the same row, then the post's tags grouped by the
+    Camera and Subject lists in the theme settings; anything else is a Place.
+    The Share link is the same #/share (Ghost's share dialog) Edge uses; custom.css hides
+    Edge's own header copy so there's only one.
+--}}
+<div class="post-date-row">
+    <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date published_at format="D MMMM YYYY"}}</time>
+    <a href="#/share" class="gh-button-share">{{t "Share"}}</a>
+</div>
 {{#if tags}}
 <div class="post-tags">
     {{> "tag-group" label="Subject" list=@custom.subject_tags}}

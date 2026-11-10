@@ -56,46 +56,45 @@
     margin: 0 auto;
 }
 
-/* Header reading order: photo, title, date with Share, excerpt, tags. The header is a grid,
-   so this reorders without touching Edge's template, which puts Share before the excerpt. */
+/* Header layout: photo, title, date with Edge's own Share button on the same row, excerpt,
+   tags. The header is a grid, so explicit rows place everything without touching Edge's
+   template; date and Share share row 3, one aligned left and one right. */
 .gh-article-header .gh-article-image {
-    order: 1;
+    grid-row: 1;
     margin-bottom: 40px;
 }
 
 .gh-article-header .gh-article-title {
-    order: 2;
+    grid-row: 2;
 }
 
-.gh-article-header .post-date-row {
-    order: 3;
+.gh-article-header .post-date,
+.gh-article-header .gh-meta-share {
+    grid-row: 3;
+    align-self: center;
+    margin-top: 12px;
+}
+
+.gh-article-header .post-date {
+    justify-self: start;
+}
+
+.gh-article-header .gh-meta-share {
+    justify-self: end;
 }
 
 /* Edge sets the excerpt in the same light grey as the date; darker so it reads as the
    post's lead-in */
 .gh-article-header .gh-article-excerpt {
-    order: 4;
+    grid-row: 4;
     color: var(--color-darker-gray);
 }
 
 .gh-article-header .post-tags {
-    order: 5;
+    grid-row: 5;
 }
 
-/* post-meta.hbs puts Share on the date row, so Edge's own header copy is redundant */
-.gh-article-header .gh-meta-share {
-    display: none;
-}
-
-/* Publish date (with Share) and grouped tags under the post title */
-.post-date-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    margin-top: 12px;
-}
-
+/* Publish date and grouped tags under the post title */
 .post-date {
     font-size: 1.5rem;
     color: var(--color-secondary-text);

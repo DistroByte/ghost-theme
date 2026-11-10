@@ -1,4 +1,5 @@
-{{!-- The post's tags grouped by the Camera and Subject lists in the theme settings; anything else is a Place --}}
+{{!-- Publish date, then the post's tags grouped by the Camera and Subject lists in the theme settings; anything else is a Place --}}
+<time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date published_at format="D MMMM YYYY"}}</time>
 {{#if tags}}
 <div class="post-tags">
     {{> "tag-group" label="Subject" list=@custom.subject_tags}}

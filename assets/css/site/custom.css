@@ -47,7 +47,14 @@
     margin-top: 20px;
 }
 
-/* Grouped tags under the post title */
+/* Publish date and grouped tags under the post title */
+.post-date {
+    display: block;
+    margin-top: 12px;
+    font-size: 1.5rem;
+    color: var(--color-secondary-text);
+}
+
 .post-tags {
     display: flex;
     flex-direction: column;

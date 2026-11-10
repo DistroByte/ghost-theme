@@ -1,5 +1,10 @@
-{{!-- in="primary_tag" keeps photography and blog posts from linking to each other --}}
-<nav class="post-nav gh-canvas" aria-label="More posts">
+{{!--
+    in="primary_tag" keeps photography and blog posts from linking to each other.
+    The wrapper takes .gh-canvas rather than the nav itself: .gh-canvas is Edge's page-width
+    grid, and its column tracks would otherwise swallow the nav's own two-column grid.
+--}}
+<div class="gh-canvas">
+<nav class="post-nav" aria-label="More posts">
     {{#prev_post in="primary_tag"}}
     <a class="post-nav-link post-nav-prev" href="{{url}}">
         {{#if feature_image}}<img class="post-nav-image" src="{{img_url feature_image size="s"}}" alt="" loading="lazy">{{/if}}
@@ -19,3 +24,4 @@
     </a>
     {{/next_post}}
 </nav>
+</div>

@@ -71,8 +71,12 @@
     order: 3;
 }
 
+/* Edge sets the excerpt in the same light grey as the date; darker and a touch heavier so
+   it reads as the post's lead-in */
 .gh-article-header .gh-article-excerpt {
     order: 4;
+    font-weight: 500;
+    color: var(--color-darker-gray);
 }
 
 .gh-article-header .post-tags {
@@ -97,26 +101,31 @@
     color: var(--color-secondary-text);
 }
 
+/* A grid rather than a fixed label width, so the label column fits the longest label in any
+   font and every row's tags start at the same point */
 .post-tags {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 8px 16px;
+    align-items: center;
     margin-top: 20px;
 }
 
 .post-tag-group {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px;
+    display: contents;
 }
 
 .post-tag-group:not(:has(.post-tag)) {
     display: none;
 }
 
+.post-tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
 .post-tag-group-label {
-    min-width: 72px;
     font-size: 1.2rem;
     font-weight: 600;
     letter-spacing: 0.04em;
@@ -284,6 +293,7 @@
 .collection-card-name {
     font-size: 1.6rem;
     font-weight: 600;
+    overflow-wrap: anywhere;
 }
 
 .collection-card-count {

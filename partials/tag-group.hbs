@@ -5,6 +5,7 @@
 --}}
 <div class="post-tag-group">
     <span class="post-tag-group-label">{{label}}</span>
+    <span class="post-tag-list">
     {{#foreach tags}}
         {{#if ../list}}
             {{#match (concat "," ../list ",") "~" (concat "," slug ",")}}
@@ -17,4 +18,5 @@
             {{/match}}
         {{/if}}
     {{/foreach}}
+    </span>
 </div>

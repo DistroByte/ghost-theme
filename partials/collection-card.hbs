@@ -1,0 +1,21 @@
+{{#if count.posts}}
+<a class="collection-card" href="{{url}}">
+    {{!-- The tag's own image (set in Admin → Tags) wins; the latest post's is only a fallback,
+          because recent posts carry many tags and would cover most cards with the same photo --}}
+    {{#if feature_image}}
+        <img class="collection-card-image" src="{{img_url feature_image size="m"}}" alt="" loading="lazy">
+    {{else}}
+        {{#get "posts" filter="tags:{{slug}}" limit="1" as |latest|}}
+            {{#foreach latest}}
+                {{#if feature_image}}
+                    <img class="collection-card-image" src="{{img_url feature_image size="m"}}" alt="" loading="lazy">
+                {{/if}}
+            {{/foreach}}
+        {{/get}}
+    {{/if}}
+    <span class="collection-card-text">
+        <span class="collection-card-name">{{name}}</span>
+        <span class="collection-card-count">{{plural count.posts empty="No posts" singular="% post" plural="% posts"}}</span>
+    </span>
+</a>
+{{/if}}

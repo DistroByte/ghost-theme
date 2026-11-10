@@ -1,0 +1,8 @@
+{{!-- The post's tags grouped by the Camera and Subject lists in the theme settings; anything else is a Place --}}
+{{#if tags}}
+<div class="post-tags">
+    {{> "tag-group" label="Subject" list=@custom.subject_tags}}
+    {{> "tag-group" label="Place" exclude=(concat @custom.camera_tags "," @custom.subject_tags ",photography,blog")}}
+    {{> "tag-group" label="Camera" list=@custom.camera_tags}}
+</div>
+{{/if}}

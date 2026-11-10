@@ -69,6 +69,26 @@
                 "type": "text",
                 "default": "You might also like...",
                 "group": "post"
+            },
+            "camera_tags": {
+                "type": "text",
+                "default": "sony-a6700,sony-a6000,sony-rxm5,canon-250d,dji-mini-4k,minolta-srt-100b,film",
+                "group": "post"
+            },
+            "subject_tags": {
+                "type": "text",
+                "default": "landscape,cityscape,night,sunrise-sunset,events,wildlife,macro,aerial,astrophotography,cars,boats,planes,trains,lego,travel",
+                "group": "post"
+            },
+            "full_resolution_note": {
+                "type": "text",
+                "default": "If you would like any of these photos at full resolution, please reach out to me at",
+                "group": "post"
+            },
+            "full_resolution_email": {
+                "type": "text",
+                "default": "james@distrobyte.io",
+                "group": "post"
             }
         }
     },

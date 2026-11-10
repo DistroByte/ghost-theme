@@ -1,0 +1,21 @@
+{{!< default}}
+
+<div class="content-area">
+<main class="site-main collections">
+
+    {{#post}}
+    <header class="gh-canvas collections-header">
+        <h1 class="gh-article-title">{{title}}</h1>
+        {{#if html}}
+            <div class="gh-content">{{content}}</div>
+        {{/if}}
+    </header>
+    {{/post}}
+
+    {{!-- Places is everything not listed as a camera or subject, so new tags show up there by default --}}
+    {{> "collection-group" label="Subjects" include=@custom.subject_tags}}
+    {{> "collection-group" label="Places" exclude=(concat @custom.camera_tags "," @custom.subject_tags ",photography,blog")}}
+    {{> "collection-group" label="Cameras" include=@custom.camera_tags}}
+
+</main>
+</div>

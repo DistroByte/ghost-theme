@@ -1,0 +1,20 @@
+{{!--
+    The current post's tags, filtered against comma-separated slug lists from the theme settings.
+    With `list`, show tags in it; with `exclude`, show every tag not in it, so tags nobody
+    has classified yet still appear instead of disappearing.
+--}}
+<div class="post-tag-group">
+    <span class="post-tag-group-label">{{label}}</span>
+    {{#foreach tags}}
+        {{#if ../list}}
+            {{#match (concat "," ../list ",") "~" (concat "," slug ",")}}
+                <a class="post-tag" href="{{url}}">{{name}}</a>
+            {{/match}}
+        {{else}}
+            {{#match (concat "," ../exclude ",") "~" (concat "," slug ",")}}
+            {{else}}
+                <a class="post-tag" href="{{url}}">{{name}}</a>
+            {{/match}}
+        {{/if}}
+    {{/foreach}}
+</div>

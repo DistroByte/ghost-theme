@@ -1,0 +1,19 @@
+{{!--
+    One collection: a card per public tag whose slug is in `include`, or not in `exclude`
+    (comma-separated slug lists). Filters use {{#get}}'s own {{placeholder}} syntax: a concat() result reaches
+    Ghost's filter parser as a SafeString object and fails to parse.
+--}}
+<section class="collection-group">
+    <h2 class="collection-group-title">{{label}}</h2>
+    <div class="collection-grid">
+        {{#if include}}
+            {{#get "tags" filter="visibility:public+slug:[{{include}}]" include="count.posts" limit="100" order="count.posts desc"}}
+                {{#foreach tags}}{{> "collection-card"}}{{/foreach}}
+            {{/get}}
+        {{else}}
+            {{#get "tags" filter="visibility:public+slug:-[{{exclude}}]" include="count.posts" limit="100" order="count.posts desc"}}
+                {{#foreach tags}}{{> "collection-card"}}{{/foreach}}
+            {{/get}}
+        {{/if}}
+    </div>
+</section>

@@ -1,0 +1,10 @@
+{{#has tag="photography"}}
+{{#if @custom.full_resolution_note}}
+<p class="full-resolution-note">
+    {{@custom.full_resolution_note}}
+    {{#if @custom.full_resolution_email}}
+    <a href="mailto:{{@custom.full_resolution_email}}">{{@custom.full_resolution_email}}</a>.
+    {{/if}}
+</p>
+{{/if}}
+{{/has}}

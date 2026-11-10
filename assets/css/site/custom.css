@@ -220,15 +220,18 @@
     padding-bottom: 60px;
 }
 
-.collections-header {
-    margin-bottom: 24px;
-}
-
+/* Header and groups share one container so the page title lines up with the sections */
+.collections-header,
 .collection-group {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto 48px;
     padding: 0 var(--grid-gap, 20px);
+}
+
+.collections-header {
+    margin-top: var(--header-spacing, 80px);
+    margin-bottom: 24px;
 }
 
 .collection-group-title {
